@@ -100,7 +100,7 @@ class TestOECT:
 			and test_oect.L == 20)
 
 	#test that metadata is correctly grabbed from data file if config doesn't exist
-	@pytest.mark.xfail
+	# @pytest.mark.xfail
 	def test_get_metadata_no_config(self):
 		test_oect = oect.OECT(folder='tests/test_device/metadata_test')
 		test_oect.make_config = True
@@ -224,7 +224,7 @@ class TestOECT:
 	######################################################################
 
 	#test that FileNotFoundError thrown when provided with invalid path
-	# @pytest.mark.xfail
+	@pytest.mark.xfail
 	def test_make_config_invalid_path(self):
 		with pytest.raises(FileNotFoundError):
 			oect.make_config('a_nonexistent_path')
