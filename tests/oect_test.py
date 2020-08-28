@@ -72,21 +72,20 @@ class TestOECT:
 	def test_filelist(self):
 		test_oect = oect.OECT(folder='tests/test_device/01')
 		test_oect.filelist()
-		assert ('tests/test_device/01/uc1_kpf6_output_0.txt' in test_oect.files
-			and 'tests/test_device/01/uc1_kpf6_output_1.txt' in test_oect.files
-			and 'tests/test_device/01/uc1_kpf6_transfer_0.txt' in test_oect.files
-			and test_oect.config[0] == 'tests/test_device/01/uc1_kpf6_config.cfg')
+		assert (os.path.join('tests/test_device/01', 'uc1_kpf6_output_0.txt') in test_oect.files
+			and os.path.join('tests/test_device/01', 'uc1_kpf6_output_1.txt') in test_oect.files
+			and os.path.join('tests/test_device/01', 'uc1_kpf6_transfer_0.txt') in test_oect.files
+			and test_oect.config[0] == os.path.join('tests/test_device/01', 'uc1_kpf6_config.cfg'))
 
 	#fails on travis build. fix and uncomment
 	#test that config file is generated when folder starts with no cfg
-	# def test_filelist_noconfig(self):
-	# 	test_oect = oect.OECT(folder='tests/test_device/no_config')
-	# 	config_check = os.path.isfile('tests/test_device/no_config/config.cfg')
-	# 	try:
-	# 		os.remove('tests/test_device/no_config/config.cfg')
-	# 	except:
-	# 		pass
-	# 	assert config_check 
+	def test_filelist_noconfig(self):
+		test_oect = oect.OECT(folder='tests/test_device/no_config')
+		assert os.path.isfile('tests/test_device/no_config/config.cfg')
+		try:
+			os.remove('tests/test_device/no_config/config.cfg')
+		except:
+			pass
 
 	#get_metadata
 	#####################################################################
