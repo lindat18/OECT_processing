@@ -80,11 +80,12 @@ class TestOECT:
 	#test that config file is generated when folder starts with no cfg
 	def test_filelist_noconfig(self):
 		test_oect = oect.OECT(folder='tests/test_device/no_config')
-		assert 'config.cfg' in os.listdir('tests/test_device/no_config')
+		config_check = 'config.cfg' in os.listdir('tests/test_device/no_config')
 		try:
 			os.remove('tests/test_device/no_config/config.cfg')
 		except:
 			pass
+		assert config_check
 
 	#get_metadata
 	#####################################################################
