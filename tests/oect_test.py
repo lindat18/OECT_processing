@@ -4,8 +4,6 @@ import pytest
 import configparser
 import numpy as np
 sys.path.insert(0,'..')
-import test_device
-
 import oect
 
 
