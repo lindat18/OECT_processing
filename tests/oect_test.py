@@ -4,7 +4,7 @@ import pytest
 import configparser
 import numpy as np
 sys.path.insert(0,'..')
-sys.path.insert(0, '.')
+
 import oect
 
 
@@ -72,9 +72,9 @@ class TestOECT:
 	def test_filelist(self):
 		test_oect = oect.OECT(folder='tests/test_device/01')
 		test_oect.filelist()
-		assert (test_oect.files == ['tests/test_device/01\\uc1_kpf6_output_0.txt',
-			'tests/test_device/01\\uc1_kpf6_output_1.txt',
-			'tests/test_device/01\\uc1_kpf6_transfer_0.txt']
+		assert ('tests/test_device/01\\uc1_kpf6_output_0.txt' in test_oect.files
+			and 'tests/test_device/01\\uc1_kpf6_output_1.txt' in test_oect.files
+			and 'tests/test_device/01\\uc1_kpf6_transfer_0.txt' in test_oect.files
 			and test_oect.config[0] == 'tests/test_device/01\\uc1_kpf6_config.cfg')
 
 	#test that config file is generated when folder starts with no cfg
@@ -234,17 +234,17 @@ class TestOECT:
 	#test that params exist when loaded from config
 	def test_config_file_params(self):
 		params, opts = oect.config_file('tests/config.cfg')
-		assert params and not opts
+		assert bool(params) and not bool(opts)
 
 	#test that options exist when loaded from config
 	def test_config_file_opts(self):
 		params, opts = oect.config_file('tests/test_device/options_test\\uc1_kpf6_config.cfg')
-		assert params and opts
+		assert bool(params) and bool(opts)
 		
 	#tests that nothing is added when provided with invalid path
 	def test_config_file_invalid_file(self):
 		params, opts = oect.config_file('a_nonexistent_file')
-		assert not params
+		assert not bool(params)
 
 	#test that configparser error thrown when provided with non-cfg file
 	def test_config_not_cfg(self):
