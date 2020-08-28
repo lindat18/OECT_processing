@@ -78,14 +78,15 @@ class TestOECT:
 			and test_oect.config[0] == os.path.join('tests/test_device/01', 'uc1_kpf6_config.cfg'))
 
 	#test that config file is generated when folder starts with no cfg
-	# def test_filelist_noconfig(self):
-	# 	test_oect = oect.OECT(folder='tests/test_device/no_config')
-	# 	config_check = 'config.cfg' in os.listdir('tests/test_device/no_config')
-	# 	try:
-	# 		os.remove('tests/test_device/no_config/config.cfg')
-	# 	except:
-	# 		pass
-	# 	assert config_check
+	@pytest.mark.xfail
+	def test_filelist_noconfig(self):
+		test_oect = oect.OECT(folder='tests/test_device/no_config')
+		config_check = 'config.cfg' in os.listdir('tests/test_device/no_config')
+		try:
+			os.remove('tests/test_device/no_config/config.cfg')
+		except:
+			pass
+		assert config_check
 
 	#get_metadata
 	#####################################################################
@@ -100,7 +101,6 @@ class TestOECT:
 			and test_oect.L == 20)
 
 	#test that metadata is correctly grabbed from data file if config doesn't exist
-	# @pytest.mark.xfail
 	def test_get_metadata_no_config(self):
 		test_oect = oect.OECT(folder='tests/test_device/metadata_test')
 		test_oect.make_config = True
