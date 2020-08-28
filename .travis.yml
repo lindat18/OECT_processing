@@ -7,9 +7,8 @@ before_install:
   - pip install -U pytest
   - pip install codecov
   - export PYTHONPATH=$PYTHONPATH:$(pwd)
-  - export '.'
 install:
   - pip install -r requirements.txt
-script: pytest tests/oect_test.py
+script: pytest
 after_success:
   - codecov
