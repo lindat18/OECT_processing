@@ -72,17 +72,17 @@ class TestOECT:
 	def test_filelist(self):
 		test_oect = oect.OECT(folder='tests/test_device/01')
 		test_oect.filelist()
-		assert ('tests/test_device/01\\uc1_kpf6_output_0.txt' in test_oect.files
-			and 'tests/test_device/01\\uc1_kpf6_output_1.txt' in test_oect.files
-			and 'tests/test_device/01\\uc1_kpf6_transfer_0.txt' in test_oect.files
-			and test_oect.config[0] == 'tests/test_device/01\\uc1_kpf6_config.cfg')
+		assert ('tests/test_device/01/uc1_kpf6_output_0.txt' in test_oect.files
+			and 'tests/test_device/01/uc1_kpf6_output_1.txt' in test_oect.files
+			and 'tests/test_device/01/uc1_kpf6_transfer_0.txt' in test_oect.files
+			and test_oect.config[0] == 'tests/test_device/01/uc1_kpf6_config.cfg')
 
 	#test that config file is generated when folder starts with no cfg
 	def test_filelist_noconfig(self):
 		test_oect = oect.OECT(folder='tests/test_device/no_config')
-		config_check = os.path.isfile('tests/test_device/no_config\\config.cfg')
+		config_check = os.path.isfile('tests/test_device/no_config/config.cfg')
 		try:
-			os.remove('tests/test_device/no_config\\config.cfg')
+			os.remove('tests/test_device/no_config/config.cfg')
 		except:
 			pass
 		assert config_check 
@@ -214,7 +214,7 @@ class TestOECT:
 			and config['Output']['Vgs (V) 3'] == '0.3'
 			and config['Output']['Vgs (V) 4'] == '0.4')
 		try:
-			os.remove('tests/test_device/no_config\\config.cfg')
+			os.remove('tests/test_device/no_config/config.cfg')
 		except:
 			pass
 		assert update_check
@@ -238,7 +238,7 @@ class TestOECT:
 
 	#test that options exist when loaded from config
 	def test_config_file_opts(self):
-		params, opts = oect.config_file('tests/test_device/options_test\\uc1_kpf6_config.cfg')
+		params, opts = oect.config_file('tests/test_device/options_test/uc1_kpf6_config.cfg')
 		assert bool(params) and bool(opts)
 		
 	#tests that nothing is added when provided with invalid path
