@@ -80,7 +80,7 @@ class TestOECT:
 	#test that config file is generated when folder starts with no cfg
 	def test_filelist_noconfig(self):
 		test_oect = oect.OECT(folder='tests/test_device/no_config')
-		assert os.path.isfile(os.path.join('tests/test_device/no_config', 'config.cfg'))
+		assert 'config.cfg' in os.listdir('tests/test_device/no_config')
 		try:
 			os.remove('tests/test_device/no_config/config.cfg')
 		except:
@@ -202,7 +202,7 @@ class TestOECT:
 		test_oect.update_config()
 		config = configparser.ConfigParser()
 		config.read(test_oect.config)
-		update_check = (config['Dimensions']['Width (um)'] == '4000'
+		assert (config['Dimensions']['Width (um)'] == '4000'
 			and config['Dimensions']['Length (um)'] == '10'
 			and config['Transfer']['Vds (V)'] == '-1'
 			and config['Output']['Preread (ms)'] == '500.0'
@@ -216,7 +216,6 @@ class TestOECT:
 			os.remove('tests/test_device/no_config/config.cfg')
 		except:
 			pass
-		assert update_check
 
 
 	#make_config

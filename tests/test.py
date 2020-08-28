@@ -6,5 +6,5 @@ import numpy as np
 sys.path.insert(0,'..')
 
 import oect
-with pytest.raises(FileNotFoundError):
-	oect.make_config('a_nonexistent_path')
+test_oect = oect.OECT(folder='test_device/no_config')
+print(os.path.isfile(os.path.join('test_device/no_config', 'config.cfg')))
