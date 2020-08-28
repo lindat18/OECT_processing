@@ -77,11 +77,10 @@ class TestOECT:
 			and os.path.join('tests/test_device/01', 'uc1_kpf6_transfer_0.txt') in test_oect.files
 			and test_oect.config[0] == os.path.join('tests/test_device/01', 'uc1_kpf6_config.cfg'))
 
-	#fails on travis build. fix and uncomment
 	#test that config file is generated when folder starts with no cfg
 	def test_filelist_noconfig(self):
 		test_oect = oect.OECT(folder='tests/test_device/no_config')
-		assert os.path.isfile('tests/test_device/no_config/config.cfg')
+		assert os.path.isfile(os.path.join('tests/test_device/no_config', 'config.cfg'))
 		try:
 			os.remove('tests/test_device/no_config/config.cfg')
 		except:
