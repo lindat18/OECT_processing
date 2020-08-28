@@ -224,7 +224,7 @@ class TestOECT:
 	######################################################################
 
 	#test that FileNotFoundError thrown when provided with invalid path
-	@pytest.mark.xfail
+	# @pytest.mark.xfail
 	def test_make_config_invalid_path(self):
 		with pytest.raises(FileNotFoundError):
 			oect.make_config('a_nonexistent_path')
